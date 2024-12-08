@@ -71,7 +71,7 @@ public class CalculateFromTextFile {
 
                 }
 
-
+                System.out.println();
                 operations.addLast(list.get(i));
             }
         }
