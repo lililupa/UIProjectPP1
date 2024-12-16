@@ -59,20 +59,25 @@ public class CalculateFromTextFile {
                         }
                     }
                 }
-//                if (Objects.equals(list.get(i), "(")) {
-//                    operations.addLast("(");//poll извлечь
-//                }
+                if (Objects.equals(list.get(i), "(")) {
+                    operations.addFirst("(");
+                    continue;
+                }
                 if (Objects.equals(list.get(i), ")")) {
-                    while (operations.peekLast() != "(") {
-                        String s = operations.pollLast();
+                    while (operations.peekFirst() != "(") {
+                        if(operations.peekFirst().equals("(")){
+                            operations.pollFirst();
+                            break;
+                        }
+                        String s = operations.pollFirst();
                         numbers.addLast(s);
                     }
-                    operations.pollLast();//уничтожили (
-
+                    operations.pollFirst();//уничтожили (
+                    break;
                 }
 
                 System.out.println();
-                operations.addLast(list.get(i));
+                operations.addFirst(list.get(i));
             }
         }
         Deque<String> polishNotation = new ArrayDeque<>();
